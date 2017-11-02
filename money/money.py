@@ -21,7 +21,6 @@ __all__ = ['Money', 'XMoney']
 
 BABEL_AVAILABLE = False
 BABEL_VERSION = None
-REGEX_CURRENCY_CODE = re.compile("^[A-Z]{3}$")
 LC_NUMERIC = None
 
 try:
@@ -46,9 +45,7 @@ class Money(object):
                 "converted to Decimal(): '{}'".format(amount)), None)
         if currency in [None, False, '']:
             raise ValueError("invalid currency value: '{}'".format(currency))
-        if not REGEX_CURRENCY_CODE.match(currency):
-            raise ValueError("currency not in ISO 4217 format: "
-                             "'{}'".format(currency))
+            
         self._currency = currency
     
     @property
